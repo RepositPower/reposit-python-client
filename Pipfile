@@ -8,6 +8,3 @@ name = "pypi"
 [packages]
 requests = "*"
 arrow = "*"
-
-[requires]
-python_version = "3"
