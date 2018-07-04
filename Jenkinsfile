@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                sh "export PIPENV_VENV_IN_PROJECT=1 pipenv install"
+                sh "export PIPENV_VENV_IN_PROJECT=1 pipenv install --verbose"
             }
         }
         stage('Tests') {
