@@ -11,7 +11,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 sh "export PIPENV_VENV_IN_PROJECT"
-                sh "pip3 install pipenv"
+                sh "pip3.7 install pipenv"
                 sh "pipenv install --verbose --three"
             }
         }
