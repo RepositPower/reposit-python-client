@@ -34,3 +34,6 @@ def api_response(url, controller, field, subfield=None, format_list=False, no_us
 
     return resp.json()[field][subfield]
 
+
+def device_summary(controller):
+    pass

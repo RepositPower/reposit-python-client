@@ -1,5 +1,7 @@
-from reposit.auth.connect import RPConnection
-from reposit.data.utils import api_response
+"""
+Defines the class that wraps around the Reposit API
+"""
+from reposit.data.utils import api_response, device_summary
 
 
 class RepositController(object):
@@ -26,8 +28,11 @@ class RepositController(object):
         )
 
     @property
-    def battery_capacity(self):
-
+    def battery_capacity(self) -> float:
+        """
+        Return the kwh battery capacity
+        :return:
+        """
         return api_response(
             url='https://{}/v2/deployments/{}/battery/capacity',
             controller=self,
@@ -35,8 +40,11 @@ class RepositController(object):
         )
 
     @property
-    def battery_min_state_of_charge(self):
-
+    def battery_min_state_of_charge(self) -> float:
+        """
+        Return the minimum state of charge of the battery
+        :return:
+        """
         return api_response(
             url='https://{}/v2/deployments/{}/battery/min_soc',
             controller=self,
@@ -44,8 +52,11 @@ class RepositController(object):
         )
 
     @property
-    def has_battery(self):
-
+    def has_battery(self) -> bool:
+        """
+        If the system has a battery installed
+        :return:
+        """
         return api_response(
             url='https://{}/v2/deployments/{}/components',
             controller=self,
@@ -54,8 +65,11 @@ class RepositController(object):
         )
 
     @property
-    def has_inverter(self):
-
+    def has_inverter(self) -> bool:
+        """
+        If the system has an inverter installed
+        :return:
+        """
         return api_response(
             url='https://{}/v2/deployments/{}/components',
             controller=self,
@@ -64,7 +78,7 @@ class RepositController(object):
         )
 
     @property
-    def historical_generation(self):
+    def historical_generation(self) -> list:
         """
         Return a list of data points as lists. Time are in GMT
         :return:
@@ -78,5 +92,58 @@ class RepositController(object):
         )
 
     @property
-    def historical_grid_credits(self):
-        pass
+    def historical_grid_credits(self) -> list:
+        """
+        Return a list of data points as lists. Times are in GMT
+        :return:
+        """
+        return api_response(
+            url='https://{}/v2/deployments/{}/gridcredits/historical',
+            controller=self,
+            field='gridcredits',
+            format_list=True
+        )
+
+    @property
+    def weekday_tou_tariff(self) -> list:
+        """
+        Returns a list of dicts of weekday time of use tariff information
+        :return:
+        """
+        return api_response(
+            url='https://{}/v2/deployments/{}/tariff/tou',
+            controller=self,
+            field='weekday'
+        )
+
+    @property
+    def weekend_tou_tariff(self) -> list:
+        """
+        Returns a list of dicts of weekend time of use tariff information
+        :return:
+        """
+        return api_response(
+            url='https://{}/v2/deployments/{}/tariff/tou',
+            controller=self,
+            field='weekend'
+        )
+
+    @property
+    def feed_in_tariff(self) -> float:
+        """
+        The feed in tariff cost as a float
+        :return:
+        """
+        return api_response(
+            url='https://{}/v2/deployments/{}/tariff/tou',
+            controller=self,
+            field='fit'
+        )
+
+    @property
+    def summary(self) -> dict:
+        """
+        Return current system information as a dict
+        :return:
+        """
+        return device_summary(self)
