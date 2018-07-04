@@ -80,10 +80,3 @@ class RepositController(object):
     @property
     def historical_grid_credits(self):
         pass
-
-
-user = RPConnection('zeo@zeo.com', 'Reposit1')
-rp = RepositController(user)
-
-
-print(rp.historical_generation)
