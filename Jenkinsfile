@@ -10,9 +10,8 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                def PIP = "/usr/local/bin/pip3.7"
                 sh "export PIPENV_VENV_IN_PROJECT"
-                sh "${PIP} install pipenv"
+                sh "/usr/local/bin/pip3.7 install pipenv"
                 sh "pipenv install --verbose --three"
             }
         }
