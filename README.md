@@ -1,2 +1,2 @@
-# reposit-home-assistant
-A home assistant component to integrate with Reposit
+# reposit
+Library to communicate with a reposit controller
