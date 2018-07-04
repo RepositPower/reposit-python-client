@@ -6,7 +6,10 @@ from requests import HTTPError
 from requests.auth import HTTPBasicAuth
 
 AUTH_URL = os.environ.get('AUTH_URL')
+from reposit.data import battery
+from reposit.data.utils import add_functions_as_methods
 
+ENV = os.environ.get('ENV', 'dapi.repositpower.com')
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +35,15 @@ class RPConnection(object):
                 return None
         return resp.json()['access_token']
 
+    def get_user_key(self):
+        headers = {
+            'Authorization': 'Bearer {}'.format(self.token),
+            'Reposit-Auth': 'API'
+        }
+        resp = requests.get('https://{}/v2/userkeys'.format(ENV), headers=headers)
+        resp.raise_for_status()
+        return resp.json()['userKeys'][0]
+
     def __init__(self, username, password):
         """
         Authenticate with a username and password.
@@ -43,6 +55,9 @@ class RPConnection(object):
         self.token = self._obtain_token()
 
 
+@add_functions_as_methods([
+    battery.get_battery_info
+])
 class Reposit(object):
 
     def __init__(self, auth):
@@ -50,3 +65,4 @@ class Reposit(object):
             'Authorization': 'Bearer {}'.format(auth.token),
             'Reposit-Auth': 'API'
         }
+        self.user_key = auth.get_user_key()
