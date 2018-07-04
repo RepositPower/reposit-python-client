@@ -41,3 +41,12 @@ class RPConnection(object):
         self.username = username
         self.password = password
         self.token = self._obtain_token()
+
+
+class Reposit(object):
+
+    def __init__(self, auth):
+        self.auth_headers = {
+            'Authorization': 'Bearer {}'.format(auth.token),
+            'Reposit-Auth': 'API'
+        }
