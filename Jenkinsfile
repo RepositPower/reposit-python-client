@@ -3,9 +3,9 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
             steps {
-               checkout scm
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                checkout scm
             }
         }
         stage('Install dependencies') {
