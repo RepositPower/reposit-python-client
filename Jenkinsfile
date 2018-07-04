@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh "export PIPENV_VENV_IN_PROJECT"
                 sh "/usr/local/bin/pip3.7 install pipenv"
-                sh "pipenv install --verbose --three"
+                sh "/usr/local/bin/pipenv install --verbose --three"
             }
         }
         stage('Tests') {
