@@ -17,7 +17,8 @@
 - Python 3.6 *preferred*
 
 
-##Quickstart
+## Quickstart
+
 ```
 from reposit.auth import RPConnection
 from reposit import RepositController
