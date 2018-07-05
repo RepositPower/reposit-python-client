@@ -1,6 +1,7 @@
 """
 Establish a connection with the auth endpoints
 """
+from __future__ import absolute_import
 import os
 
 import logging

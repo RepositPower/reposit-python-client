@@ -1,6 +1,7 @@
 """
 Shortcut imports + checks for python versions.
 """
+from __future__ import absolute_import
 import sys
 
 from reposit.auth.connect import RPConnection

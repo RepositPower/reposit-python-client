@@ -1,6 +1,7 @@
 """
 Defines the class that wraps around the Reposit API
 """
+from __future__ import absolute_import
 from reposit.data.utils import api_response, device_summary
 
 

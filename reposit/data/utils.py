@@ -1,6 +1,8 @@
 """
 Utility functions for the reposit controller
 """
+from __future__ import absolute_import
+
 import arrow
 import requests
 
