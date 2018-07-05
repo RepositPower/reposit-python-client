@@ -3,8 +3,9 @@
 [![Build Status](https://travis-ci.org/tombasche/reposit.svg?branch=master)](https://travis-ci.org/tombasche/reposit)
 
 
-Python client library to communicate with a Reposit Controller
-
+<p align="center">
+    <span>Python client library to communicate with a [Reposit](https://www.repositpower.com) Controller.</span>
+</p>
 <p align="center">
     <img src="http://www.tech23.com.au/2016/wp-content/uploads/2016/09/tech23-2016-Reposit-Power-logo.png">
 </p>
