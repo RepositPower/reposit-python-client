@@ -7,5 +7,4 @@ python:
 before_install: pip install pipenv
 install: pipenv install
 script:
-  - pipenv check
   - pytest
