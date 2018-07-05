@@ -31,7 +31,7 @@ class RepositController(object):
         )
 
     @property
-    def battery_capacity(self) -> float:
+    def battery_capacity(self):
         """
         Return the kwh battery capacity
         :return:
@@ -43,7 +43,7 @@ class RepositController(object):
         )
 
     @property
-    def battery_min_state_of_charge(self) -> float:
+    def battery_min_state_of_charge(self):
         """
         Return the minimum state of charge of the battery
         :return:
@@ -55,7 +55,7 @@ class RepositController(object):
         )
 
     @property
-    def has_battery(self) -> bool:
+    def has_battery(self):
         """
         If the system has a battery installed
         :return:
@@ -68,7 +68,7 @@ class RepositController(object):
         )
 
     @property
-    def has_inverter(self) -> bool:
+    def has_inverter(self):
         """
         If the system has an inverter installed
         :return:
@@ -81,7 +81,7 @@ class RepositController(object):
         )
 
     @property
-    def latest_historical_generation(self) -> list:
+    def latest_historical_generation(self):
         """
         Return a list of data points as lists. Time are in GMT
         :return:
@@ -95,7 +95,7 @@ class RepositController(object):
         )
 
     @property
-    def latest_historical_grid_credits(self) -> list:
+    def latest_historical_grid_credits(self):
         """
         Return a list of data points as lists. Times are in GMT
         :return:
@@ -108,7 +108,7 @@ class RepositController(object):
         )
 
     @property
-    def weekday_tou_tariff(self) -> list:
+    def weekday_tou_tariff(self):
         """
         Returns a list of dicts of weekday time of use tariff information
         :return:
@@ -120,7 +120,7 @@ class RepositController(object):
         )
 
     @property
-    def weekend_tou_tariff(self) -> list:
+    def weekend_tou_tariff(self):
         """
         Returns a list of dicts of weekend time of use tariff information
         :return:
@@ -132,7 +132,7 @@ class RepositController(object):
         )
 
     @property
-    def feed_in_tariff(self) -> float:
+    def feed_in_tariff(self):
         """
         The feed in tariff cost as a float
         :return:
@@ -144,7 +144,7 @@ class RepositController(object):
         )
 
     @property
-    def summary(self) -> dict:
+    def summary(self):
         """
         Return current system information as a dict
         :return:
