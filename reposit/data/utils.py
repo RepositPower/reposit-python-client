@@ -5,6 +5,7 @@ from __future__ import absolute_import
 
 import arrow
 import requests
+import six
 
 from reposit.auth.connect import ENV
 
@@ -49,8 +50,8 @@ def device_summary(controller):
     url = 'https://{}/v2/deployments/{}/summary/now'.format(ENV, controller.user_key)
     resp = requests.get(url, headers=controller.auth_headers)
     resp.raise_for_status()
-
-    return resp.json()
+    summary = format_summary_response(resp.json())
+    return summary
 
 
 def format_summary_response(data):
@@ -59,4 +60,9 @@ def format_summary_response(data):
     :param data: dict of info
     :return:
     """
-    return data
+    response = {}
+    data_items = data['data'].items() if six.PY3 else data['data'].iteritems()
+    for key, value in data_items:
+        if key in ('battery', 'grid', 'house', 'solar'):
+            response[key] = {'state': value['state'], 'value': value['val']}
+    return response
