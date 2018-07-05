@@ -33,11 +33,9 @@ class RPConnection(object):
         except HTTPError:
             if resp.status_code in (401, 403):
                 logger.exception('Unauthorized. Please check your credentials are correct.')
-                return None
-
             logger.exception('Unable to authenticate - please try again later.')
-            return None
-        return resp.json()['access_token']
+            return None, None
+        return resp.json()['access_token'], resp.json()['expires_at']
 
     def __init__(self, username, password):
         """
@@ -47,7 +45,7 @@ class RPConnection(object):
         """
         self.username = username
         self.password = password
-        self.token = self._login()
+        self.token, self.token_expiry = self._login()
 
     def __str__(self):
         return self.username
