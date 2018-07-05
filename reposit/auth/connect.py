@@ -1,10 +1,13 @@
+import os
+
 import logging
 
 import requests
 from requests import HTTPError
 from requests.auth import HTTPBasicAuth
 
-from reposit.auth import AUTH_URL
+AUTH_URL = os.environ.get('AUTH_URL')
+ENV = os.environ.get('ENV')
 
 logger = logging.getLogger(__name__)
 

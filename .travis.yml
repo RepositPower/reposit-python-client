@@ -7,4 +7,6 @@ python:
 before_install: pip install pipenv
 install: pipenv install
 script:
+  - pip install pylint
+  - pylint reposit
   - pytest

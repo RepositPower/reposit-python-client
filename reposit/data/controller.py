@@ -78,7 +78,7 @@ class RepositController(object):
         )
 
     @property
-    def historical_generation(self) -> list:
+    def latest_historical_generation(self) -> list:
         """
         Return a list of data points as lists. Time are in GMT
         :return:
@@ -92,7 +92,7 @@ class RepositController(object):
         )
 
     @property
-    def historical_grid_credits(self) -> list:
+    def latest_historical_grid_credits(self) -> list:
         """
         Return a list of data points as lists. Times are in GMT
         :return:
