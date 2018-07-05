@@ -5,7 +5,9 @@
 
 Python client library to communicate with a Reposit Controller
 
-![](http://www.tech23.com.au/2016/wp-content/uploads/2016/09/tech23-2016-Reposit-Power-logo.png)
+<p align="center">
+    <img src="http://www.tech23.com.au/2016/wp-content/uploads/2016/09/tech23-2016-Reposit-Power-logo.png">
+</p>
 
 ## Compatibility
 
