@@ -31,15 +31,15 @@ expected = {
     },
     'grid': {
         'state': 'ONLINE',
-        'val': 40.0
+        'value': 40.0
     },
     'house': {
         'state': 'ONLINE',
-        'val': 25.0
+        'value': 25.0
     },
     'solar': {
         'state': 'ONLINE',
-        'val': 30.0
+        'value': 30.0
     },
 }
 
@@ -64,6 +64,6 @@ expected_2 = {
     },
     'grid': {
         'state': 'ONLINE',
-        'val': 40.0
+        'value': 40.0
     }
 }
