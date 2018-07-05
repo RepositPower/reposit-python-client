@@ -57,3 +57,4 @@ def format_summary_response(data):
     :param data: dict of info
     :return:
     """
+    return data

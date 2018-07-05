@@ -1,3 +1,6 @@
+"""
+Establish a connection with the auth endpoints
+"""
 import os
 
 import logging
@@ -30,9 +33,9 @@ class RPConnection(object):
             if resp.status_code in (401, 403):
                 logger.exception('Unauthorized. Please check your credentials are correct.')
                 return None
-            else:
-                logger.exception('Unable to authenticate - please try again later.')
-                return None
+
+            logger.exception('Unable to authenticate - please try again later.')
+            return None
         return resp.json()['access_token']
 
     def __init__(self, username, password):

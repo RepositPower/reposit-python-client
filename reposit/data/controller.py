@@ -5,7 +5,9 @@ from reposit.data.utils import api_response, device_summary
 
 
 class RepositController(object):
-
+    """
+    An object representing a Reposit Box.
+    """
     def __init__(self, auth):
         self.auth_headers = {
             'Authorization': 'Bearer {}'.format(auth.token),
