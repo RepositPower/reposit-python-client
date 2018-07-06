@@ -21,13 +21,16 @@
 
 ```
 from reposit.auth import RPConnection
-from reposit import RepositController
+from reposit import Controller, Account
 
 user = RPConnection('username', 'password')
+account = Account(user)
 
-controller = RepositController(user)
+user_keys = account.get_user_keys()
 
-print(controller.battery_capacity) 
+controller = Controller(user, user_key=user_keys[1])
+
+print(controller.battery_capacity)
 ```
 
 ## Links

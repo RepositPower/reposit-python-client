@@ -14,7 +14,7 @@ def api_response(url, controller, field, subfield=None, format_list=False, no_us
     """
     Simple data fetch for a reposit controller
     :param url: api url
-    :param controller: RepositController instance
+    :param controller: Controller instance
     :param field: the first level field
     :param subfield: optional second level field
     :return:
@@ -44,7 +44,7 @@ def api_response(url, controller, field, subfield=None, format_list=False, no_us
 def device_summary(controller):
     """
     Retrieve current summary for the device
-    :param controller: RepositController instance
+    :param controller: Controller instance
     :return:
     """
     url = 'https://{}/v2/deployments/{}/summary/now'.format(ENV, controller.user_key)

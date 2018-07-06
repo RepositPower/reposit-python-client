@@ -6,7 +6,7 @@ from __future__ import absolute_import
 from reposit.data.utils import api_response, device_summary
 
 
-class RepositController(object):
+class Controller(object):
     """
     An object representing a Reposit Box.
     """
