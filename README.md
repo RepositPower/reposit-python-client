@@ -1,6 +1,6 @@
 ## reposit-python-client
 
-[![Build Status](https://travis-ci.org/tombasche/reposit.svg?branch=master)](https://travis-ci.org/tombasche/reposit)
+[![Build Status](https://travis-ci.org/RepositPower/reposit-python-client.svg?branch=master)](https://travis-ci.org/RepositPower/reposit-python-client)
 
 
 <p align="center">
