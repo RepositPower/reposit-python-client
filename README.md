@@ -28,7 +28,7 @@ account = Account(user)
 
 user_keys = account.get_user_keys()
 
-controller = Controller(user, user_key=user_keys[1])
+controller = Controller(user, user_key=user_keys[0])
 
 print(controller.battery_capacity)
 ```
