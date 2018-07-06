@@ -1,3 +1,6 @@
+"""
+Define an Account for a logged in user.
+"""
 from reposit.data.utils import api_response
 
 
