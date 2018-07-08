@@ -84,6 +84,21 @@ class Controller(object):
         )
 
     @property
+    def latest_historical_house(self):
+        """
+        Return a list of data points as lists. Time are in GMT
+        :return:
+        """
+
+        return api_response(
+            url='https://{}/v2/deployments/{}/house/historical',
+            controller=self,
+            field='data',
+            subfield='houseP',
+            format_list=True
+        )
+
+    @property
     def latest_historical_grid_credits(self):
         """
         Return a list of data points as lists. Times are in GMT
@@ -95,6 +110,33 @@ class Controller(object):
             field='gridcredits',
             format_list=True
         )
+
+    @property
+    def latest_historical_inverter(self):
+        """
+        Return a list of data points as lists. Times are in GMT
+        :return:
+        """
+        return api_response(
+            url='https://{}/v2/deployments/{}/inverter/historical/p',
+            controller=self,
+            field='inverterP',
+            format_list=True
+        )
+
+    @property
+    def latest_historical_meter(self):
+        """
+        Return a list of data points as lists. Times are in GMT
+        :return:
+        """
+        return api_response(
+            url='https://{}/v2/deployments/{}/meter/historical/p',
+            controller=self,
+            field='meterP',
+            format_list=True
+        )
+
 
     @property
     def weekday_tou_tariff(self):
