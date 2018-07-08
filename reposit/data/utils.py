@@ -34,8 +34,13 @@ def api_response(url, controller, field, subfield=None, format_list=False, no_us
 
     if format_list:
         data = resp.json()
-        for data_point in data[field]:
-            data_point[0] = arrow.get(data_point[0]).format('HH:mm:ss DD-MM-YYYY')
+        if subfield:
+            for data_point in data[field][subfield]:
+                data_point[0] = arrow.get(data_point[0]).format('HH:mm:ss DD-MM-YYYY')
+            return data[field][subfield]
+        else:
+            for data_point in data[field]:
+                data_point[0] = arrow.get(data_point[0]).format('HH:mm:ss DD-MM-YYYY')
         return data[field]
 
     return resp.json()[field][subfield]
