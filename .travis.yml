@@ -8,4 +8,6 @@ install: pipenv install
 script:
   - pip install pylint
   - pylint reposit --rcfile .pylintrc
+  - pip install xenon
+  - xenon -b B -m A -a A
   - pytest
