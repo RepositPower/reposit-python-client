@@ -1,3 +1,3 @@
 [MESSAGES CONTROL]
 
-disable=C0103,R0903,R0913
+disable=C0103,R0903,R0913,logging-format-interpolation

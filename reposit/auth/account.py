@@ -1,7 +1,7 @@
 """
 Define an Account for a logged in user.
 """
-from reposit.data.utils import api_response
+from reposit.data.api import ApiRequest
 
 
 class Account(object):
@@ -21,9 +21,9 @@ class Account(object):
         :param auth_headers:
         :return:
         """
-        return api_response(
-            url='https://{}/v2/userkeys',
+        request = ApiRequest(
+            path='/v2/userkeys',
             controller=self,
-            field='userKeys',
-            no_user_key=True
+            schema={'userKeys': {}}
         )
+        return request.get()

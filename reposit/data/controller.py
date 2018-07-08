@@ -3,6 +3,7 @@ Defines the class that wraps around the Reposit API
 """
 from __future__ import absolute_import
 
+from reposit.data.api import ApiRequest
 from reposit.data.utils import api_response, device_summary
 
 
@@ -25,11 +26,12 @@ class Controller(object):
         Return the kwh battery capacity
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/battery/capacity',
+        request = ApiRequest(
+            path='v2/deployments/{}/battery/capacity'.format(self.user_key),
             controller=self,
-            field='batteryCapacity'
+            schema={'batteryCapacity': {}}
         )
+        return request.get()
 
     @property
     def battery_min_state_of_charge(self):

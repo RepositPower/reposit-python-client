@@ -2,16 +2,14 @@
 Establish a connection with the auth endpoints
 """
 from __future__ import absolute_import
-import os
 
 import logging
 
 import requests
 from requests import HTTPError
-from requests.auth import HTTPBasicAuth
 
-AUTH_URL = os.environ.get('AUTH_URL')
-ENV = os.environ.get('ENV')
+from requests.auth import HTTPBasicAuth
+from reposit.settings import AUTH_PATH
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +23,7 @@ class RPConnection(object):
         Given a username and password, obtain an access token
         :return:
         """
-        resp = requests.post(AUTH_URL, auth=HTTPBasicAuth(self.username, self.password), headers={
+        resp = requests.post(AUTH_PATH, auth=HTTPBasicAuth(self.username, self.password), headers={
             "Reposit-Auth": "API"
         })
         try:

@@ -3,11 +3,28 @@ Utility functions for the reposit controller
 """
 from __future__ import absolute_import
 
+import re
+
 import arrow
 import requests
 import six
 
-from reposit.auth.connect import ENV
+from reposit.settings import BASE_URL
+
+
+# adapted from Django :)
+VALID_URL_REGEX = re.compile(
+    r'^(?:http|ftp)s?://'  # http:// or https://
+)
+
+
+def is_valid_url(url):
+    """
+    Check if a url is valid for an api request.
+    :param url:
+    :return:
+    """
+    return bool(re.match(VALID_URL_REGEX, url))
 
 
 def api_response(url, controller, field, subfield=None, format_list=False, no_user_key=False):
@@ -24,9 +41,10 @@ def api_response(url, controller, field, subfield=None, format_list=False, no_us
         subfield_check = True
 
     if no_user_key:
-        resp = requests.get(url.format(ENV), headers=controller.auth_headers)
+        resp = requests.get(url.format(BASE_URL), headers=controller.auth_headers)
     else:
-        resp = requests.get(url.format(ENV, controller.user_key), headers=controller.auth_headers)
+        resp = requests.get(url.format(BASE_URL, controller.user_key),
+                            headers=controller.auth_headers)
 
     resp.raise_for_status()
     if not subfield_check and not format_list:
@@ -52,7 +70,7 @@ def device_summary(controller):
     :param controller: Controller instance
     :return:
     """
-    url = 'https://{}/v2/deployments/{}/summary/now'.format(ENV, controller.user_key)
+    url = '{}/v2/deployments/{}/summary/now'.format(BASE_URL, controller.user_key)
     resp = requests.get(url, headers=controller.auth_headers)
     resp.raise_for_status()
     summary = format_summary_response(resp.json())
