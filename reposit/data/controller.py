@@ -4,7 +4,6 @@ Defines the class that wraps around the Reposit API
 from __future__ import absolute_import
 
 from reposit.data.api import ApiRequest
-from reposit.data.utils import api_response, device_summary
 
 
 class Controller(object):
@@ -39,11 +38,13 @@ class Controller(object):
         Return the minimum state of charge of the battery
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/battery/min_soc',
+        request = ApiRequest(
+            path='v2/deployments/{}/battery/min_soc'.format(self.user_key),
             controller=self,
-            field='min_soc'
+            schema={'min_soc': {}}
         )
+
+        return request.get()
 
     @property
     def has_battery(self):
@@ -51,12 +52,16 @@ class Controller(object):
         If the system has a battery installed
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/components',
+        request = ApiRequest(
+            path='v2/deployments/{}/components'.format(self.user_key),
             controller=self,
-            field='data',
-            subfield='battery',
+            schema={
+                'data': {
+                    'battery': {}
+                }
+            }
         )
+        return request.get()
 
     @property
     def has_inverter(self):
@@ -64,12 +69,16 @@ class Controller(object):
         If the system has an inverter installed
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/components',
+        request = ApiRequest(
+            path='v2/deployments/{}/components'.format(self.user_key),
             controller=self,
-            field='data',
-            subfield='inverter',
+            schema={
+                'data': {
+                    'inverter': {}
+                }
+            }
         )
+        return request.get()
 
     @property
     def latest_historical_generation(self):
@@ -77,13 +86,14 @@ class Controller(object):
         Return a list of data points as lists. Time are in GMT
         :return:
         """
-
-        return api_response(
-            url='https://{}/v2/deployments/{}/generation/historical/p',
+        request = ApiRequest(
+            path='v2/deployments/{}/generation/historical/p'.format(self.user_key),
             controller=self,
-            field='solarP',
-            format_list=True
+            schema={
+                'solarP': {}
+            }
         )
+        return request.get()
 
     @property
     def latest_historical_house(self):
@@ -91,14 +101,16 @@ class Controller(object):
         Return a list of data points as lists. Time are in GMT
         :return:
         """
-
-        return api_response(
-            url='https://{}/v2/deployments/{}/house/historical',
+        request = ApiRequest(
+            path='v2/deployments/{}/house/historical'.format(self.user_key),
             controller=self,
-            field='data',
-            subfield='houseP',
-            format_list=True
+            schema={
+                'data': {
+                    'houseP': {}
+                }
+            }
         )
+        return request.get()
 
     @property
     def latest_historical_grid_credits(self):
@@ -106,12 +118,15 @@ class Controller(object):
         Return a list of data points as lists. Times are in GMT
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/gridcredits/historical',
+
+        request = ApiRequest(
+            path='v2/deployments/{}/gridcredits/historical'.format(self.user_key),
             controller=self,
-            field='gridcredits',
-            format_list=True
+            schema={
+                'gridcredits': {}
+            }
         )
+        return request.get()
 
     @property
     def latest_historical_inverter(self):
@@ -119,12 +134,14 @@ class Controller(object):
         Return a list of data points as lists. Times are in GMT
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/inverter/historical/p',
+        request = ApiRequest(
+            path='v2/deployments/{}/inverter/historical/p'.format(self.user_key),
             controller=self,
-            field='inverterP',
-            format_list=True
+            schema={
+                'inverterP': {}
+            }
         )
+        return request.get()
 
     @property
     def latest_historical_meter(self):
@@ -132,13 +149,14 @@ class Controller(object):
         Return a list of data points as lists. Times are in GMT
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/meter/historical/p',
+        request = ApiRequest(
+            path='v2/deployments/{}/meter/historical/p'.format(self.user_key),
             controller=self,
-            field='meterP',
-            format_list=True
+            schema={
+                'meterP': {}
+            }
         )
-
+        return request.get()
 
     @property
     def weekday_tou_tariff(self):
@@ -146,11 +164,14 @@ class Controller(object):
         Returns a list of dicts of weekday time of use tariff information
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/tariff/tou',
+        request = ApiRequest(
+            path='v2/deployments/{}/tariff/tou'.format(self.user_key),
             controller=self,
-            field='weekday'
+            schema={
+                'weekday': {}
+            }
         )
+        return request.get()
 
     @property
     def weekend_tou_tariff(self):
@@ -158,11 +179,14 @@ class Controller(object):
         Returns a list of dicts of weekend time of use tariff information
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/tariff/tou',
+        request = ApiRequest(
+            path='v2/deployments/{}/tariff/tou'.format(self.user_key),
             controller=self,
-            field='weekend'
+            schema={
+                'weekend': {}
+            }
         )
+        return request.get()
 
     @property
     def feed_in_tariff(self):
@@ -170,16 +194,11 @@ class Controller(object):
         The feed in tariff cost as a float
         :return:
         """
-        return api_response(
-            url='https://{}/v2/deployments/{}/tariff/tou',
+        request = ApiRequest(
+            path='v2/deployments/{}/tariff/tou'.format(self.user_key),
             controller=self,
-            field='fit'
+            schema={
+                'fit': {}
+            }
         )
-
-    @property
-    def summary(self):
-        """
-        Return current system information as a dict
-        :return:
-        """
-        return device_summary(self)
+        return request.get()

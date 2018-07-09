@@ -4,12 +4,11 @@ Define an API connection object
 import logging
 
 import requests
-import six
 
 from reposit.data.exceptions import InvalidControllerException
 from reposit.data.utils import is_valid_url
 from reposit.settings import BASE_URL
-
+from reposit.utilities import dict_iter
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +28,7 @@ class ApiRequest(object):
         will leak the access token.
         :return:
         """
-        return self.url, self.schema
+        return '{} {}'.format(self.url, self.schema)
 
     def __init__(self, path, controller, schema, **kwargs):
         """
@@ -101,17 +100,35 @@ class ApiRequest(object):
         """
 
         data = api_response.json()
-        data_for_retrieval = []
-        schema_items = self.schema.items() if six.PY3 else self.schema.iteritems()
-        for key, _ in schema_items:
-            fetched_data = data.get(key)
-            if fetched_data:
-                data_for_retrieval.append(fetched_data)
-            del data[key]
+        target_key = deepest_key(self.schema)
+        target_data = match_to_schema(data, target_key)
+        return target_data
 
-        # if its a list of only one thing then simplify it a smidge.
-        # Most routes tend to only be.
-        if len(data_for_retrieval) == 1:
-            return data_for_retrieval[0]
 
-        return data_for_retrieval
+def deepest_key(_dict):
+    """Return the deepest key in a dict"""
+    for key, value in dict_iter(_dict):
+        if isinstance(value, dict) and bool(value):
+            return deepest_key(_dict[key])
+        return key
+
+
+def match_to_schema(_dict, requested_key):
+    """
+    Match the schema supplied with the response to return the
+    data we requested.
+    :param _dict:
+    :param requested_key:
+    :return:
+    """
+    if _dict.get(requested_key) is not None:
+        return _dict[requested_key]
+
+    for valid_key in _dict:
+        if valid_key == requested_key:
+            if not isinstance(_dict.get(valid_key), dict):
+                return _dict[valid_key]
+            else:
+                continue
+        elif valid_key != requested_key and isinstance(_dict.get(valid_key), dict):
+            return match_to_schema(_dict[valid_key], requested_key)
