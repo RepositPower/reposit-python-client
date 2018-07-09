@@ -6,6 +6,8 @@ from __future__ import absolute_import
 import re
 
 # adapted from Django :)
+from reposit.utilities import dict_iter
+
 VALID_URL_REGEX = re.compile(
     r'^(?:http|ftp)s?://'  # http:// or https://
 )
