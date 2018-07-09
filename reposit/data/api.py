@@ -30,7 +30,7 @@ class ApiRequest(object):
         """
         return '{} {}'.format(self.url, self.schema)
 
-    def __init__(self, path, controller, schema, **kwargs):
+    def __init__(self, path, controller, schema):
         """
         :param path: the url endpoint (e.g. /v2/deployments etc. etc.
         :param controller: a Controller instance
@@ -49,8 +49,6 @@ class ApiRequest(object):
         }
         This is because some of the API responses vary in structure, so
         we can define them on the fly easily :)
-
-        :param kwargs: additional arguments when requesting data
         """
         if path.startswith('/'):
             self.url = '{}{}'.format(BASE_URL, path)
