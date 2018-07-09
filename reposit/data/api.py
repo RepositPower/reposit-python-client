@@ -6,9 +6,8 @@ import logging
 import requests
 
 from reposit.data.exceptions import InvalidControllerException
-from reposit.data.utils import is_valid_url
+from reposit.data.utils import is_valid_url, deepest_key, match_to_schema
 from reposit.settings import BASE_URL
-from reposit.utilities import dict_iter
 
 logger = logging.getLogger(__name__)
 
@@ -103,32 +102,3 @@ class ApiRequest(object):
         target_key = deepest_key(self.schema)
         target_data = match_to_schema(data, target_key)
         return target_data
-
-
-def deepest_key(_dict):
-    """Return the deepest key in a dict"""
-    for key, value in dict_iter(_dict):
-        if isinstance(value, dict) and bool(value):
-            return deepest_key(_dict[key])
-        return key
-
-
-def match_to_schema(_dict, requested_key):
-    """
-    Match the schema supplied with the response to return the
-    data we requested.
-    :param _dict:
-    :param requested_key:
-    :return:
-    """
-    if _dict.get(requested_key) is not None:
-        return _dict[requested_key]
-
-    for valid_key in _dict:
-        if valid_key == requested_key:
-            if not isinstance(_dict.get(valid_key), dict):
-                return _dict[valid_key]
-            else:
-                continue
-        elif valid_key != requested_key and isinstance(_dict.get(valid_key), dict):
-            return match_to_schema(_dict[valid_key], requested_key)
