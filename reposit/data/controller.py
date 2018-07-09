@@ -80,6 +80,23 @@ class Controller(object):
         )
         return request.get()
 
+    def get_historical_generation(self, start, end):
+        """
+        Given a start and end timestamp return the generation
+        data.
+        :param start: unix timestamp
+        :param end: unix timestamp
+        :return: list of lists of data
+        """
+        request = ApiRequest(
+            path='v2/deployments/{}/generation/historical/p'.format(self.user_key),
+            controller=self,
+            schema={
+                'solarP': {}
+            }
+        )
+        return request.query(start, end)
+
     @property
     def latest_historical_generation(self):
         """
@@ -94,6 +111,23 @@ class Controller(object):
             }
         )
         return request.get()
+
+    def get_historical_house(self, start, end):
+        """
+        Given a start and end timestamp return the house
+        data.
+        :param start: unix timestamp
+        :param end: unix timestamp
+        :return: list of lists of data
+        """
+        request = ApiRequest(
+            path='v2/deployments/{}/house/historical'.format(self.user_key),
+            controller=self,
+            schema={
+                'houseP': {}
+            }
+        )
+        return request.query(start, end)
 
     @property
     def latest_historical_house(self):
@@ -112,6 +146,23 @@ class Controller(object):
         )
         return request.get()
 
+    def get_historical_grid_credits(self, start, end):
+        """
+        Given a start and end timestamp return the gridcredits
+        data.
+        :param start: unix timestamp
+        :param end: unix timestamp
+        :return: list of lists of data
+        """
+        request = ApiRequest(
+            path='v2/deployments/{}/gridcredits/historical'.format(self.user_key),
+            controller=self,
+            schema={
+                'gridcredits': {}
+            }
+        )
+        return request.query(start, end)
+
     @property
     def latest_historical_grid_credits(self):
         """
@@ -128,6 +179,23 @@ class Controller(object):
         )
         return request.get()
 
+    def get_historical_inverter(self, start, end):
+        """
+        Given a start and end timestamp return the inverter
+        data.
+        :param start: unix timestamp
+        :param end: unix timestamp
+        :return: list of lists of data
+        """
+        request = ApiRequest(
+            path='v2/deployments/{}/inverter/historical/p'.format(self.user_key),
+            controller=self,
+            schema={
+                'inverterP': {}
+            }
+        )
+        return request.query(start, end)
+
     @property
     def latest_historical_inverter(self):
         """
@@ -142,6 +210,23 @@ class Controller(object):
             }
         )
         return request.get()
+
+    def get_historical_meter(self, start, end):
+        """
+        Given a start and end timestamp return the meter
+        data.
+        :param start: unix timestamp
+        :param end: unix timestamp
+        :return: list of lists of data
+        """
+        request = ApiRequest(
+            path='v2/deployments/{}/meter/historical/p'.format(self.user_key),
+            controller=self,
+            schema={
+                'meterP': {}
+            }
+        )
+        return request.query(start, end)
 
     @property
     def latest_historical_meter(self):

@@ -4,6 +4,7 @@ Define an API connection object
 import logging
 
 import requests
+import pendulum
 
 from reposit.data.exceptions import InvalidControllerException
 from reposit.data.utils import is_valid_url, deepest_key, match_to_schema
@@ -64,11 +65,6 @@ class ApiRequest(object):
 
         # a lookup of the response schema
         self.schema = schema
-        """
-        Various optional args here
-        """
-        # if the response a list?
-        self.is_list = kwargs.get('format_list', False)
 
     def get(self):
         """
@@ -90,6 +86,31 @@ class ApiRequest(object):
 
         data = self._simple_format_for_fields(resp)
         return data
+
+    def query(self, start, end=None):
+        """
+        Similar to get() but with specified query parameters.
+        :param start: unix timestamp (start of query)
+        :param end: unix timestamp (end of query). If not specified
+        then this defaults to now()
+        :return:
+        """
+        if not end:
+            end = pendulum.now().int_timestamp
+
+        resp = requests.get(
+            '{}?start={}&end={}'.format(self.url, start, end),
+            headers=self.controller.auth_headers
+        )
+        try:
+            resp.raise_for_status()
+        except Exception as ex:
+            # Hijack the exception to log the exact issue.
+            logger.exception('Error retrieving data: {}'.format(self))
+            raise ex
+
+        data = self._simple_format_for_fields(resp)
+        return {'data': data[0]}  # because this is a list of lists
 
     def _simple_format_for_fields(self, api_response):
         """
