@@ -4,18 +4,26 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="Reposit Client",
-    version="0.1",
+    name="reposit",
+    version="0.2b1",
     author="Thomas Basche",
     author_email="thomas.basche@repositpower.com",
     description="A library to communicate with a Reposit Controller",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/tombasche/reposit",
+    url="https://github.com/RepositPower/reposit-python-client",
     packages=setuptools.find_packages(),
+    install_requires=[
+        'requests',
+        'pendulum',
+        'six'
+    ],
     classifiers=(
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Apache License 2.0",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 2.7",
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ),
 )
