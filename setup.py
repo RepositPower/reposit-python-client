@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="reposit",
-    version="0.2b1",
+    version="0.3",
     author="Thomas Basche",
     author_email="thomas.basche@repositpower.com",
     description="A library to communicate with a Reposit Controller",
