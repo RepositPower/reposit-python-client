@@ -6,7 +6,7 @@ from __future__ import absolute_import
 from reposit.data.api import ApiRequest
 
 
-class Controller(object):
+class Controller:
     """
     An object representing a Reposit Box.
     """
