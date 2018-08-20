@@ -16,6 +16,10 @@
 - Python 3+
 - Python 3.6 *preferred*
 
+## Installation
+```
+pip install reposit
+```
 
 ## Quickstart
 
