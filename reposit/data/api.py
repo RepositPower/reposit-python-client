@@ -13,7 +13,7 @@ from reposit.settings import BASE_URL
 logger = logging.getLogger(__name__)
 
 
-class ApiRequest:
+class ApiRequest(object):
     """
     A class which represents a request/response from the Reposit API.
 

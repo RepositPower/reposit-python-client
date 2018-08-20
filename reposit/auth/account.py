@@ -4,7 +4,7 @@ Define an Account for a logged in user.
 from reposit.data.api import ApiRequest
 
 
-class Account:
+class Account(object):
     """
     Represents a user account
     """

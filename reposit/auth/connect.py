@@ -14,7 +14,7 @@ from reposit.settings import AUTH_PATH
 logger = logging.getLogger(__name__)
 
 
-class RPConnection:
+class RPConnection(object):
     """
     Establish a connection to the Reposit cloud
     """
