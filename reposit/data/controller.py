@@ -80,7 +80,7 @@ class Controller(object):
         )
         return request.get()
 
-    def get_historical_generation(self, start, end):
+    def get_solar_generation_data(self, start, end):
         """
         Given a start and end timestamp return the generation
         data.
@@ -98,7 +98,7 @@ class Controller(object):
         return request.query(start, end)
 
     @property
-    def latest_historical_generation(self):
+    def latest_solar_generation_data(self):
         """
         Return a list of data points as lists. Time are in GMT
         :return:
@@ -112,7 +112,7 @@ class Controller(object):
         )
         return request.get()
 
-    def get_historical_house(self, start, end):
+    def get_house_data(self, start, end):
         """
         Given a start and end timestamp return the house
         data.
@@ -130,7 +130,7 @@ class Controller(object):
         return request.query(start, end)
 
     @property
-    def latest_historical_house(self):
+    def latest_house_data(self):
         """
         Return a list of data points as lists. Time are in GMT
         :return:
@@ -146,40 +146,7 @@ class Controller(object):
         )
         return request.get()
 
-    def get_historical_grid_credits(self, start, end):
-        """
-        Given a start and end timestamp return the gridcredits
-        data.
-        :param start: unix timestamp
-        :param end: unix timestamp
-        :return: list of lists of data
-        """
-        request = ApiRequest(
-            path='v2/deployments/{}/gridcredits/historical'.format(self.user_key),
-            controller=self,
-            schema={
-                'gridcredits': {}
-            }
-        )
-        return request.query(start, end)
-
-    @property
-    def latest_historical_grid_credits(self):
-        """
-        Return a list of data points as lists. Times are in GMT
-        :return:
-        """
-
-        request = ApiRequest(
-            path='v2/deployments/{}/gridcredits/historical'.format(self.user_key),
-            controller=self,
-            schema={
-                'gridcredits': {}
-            }
-        )
-        return request.get()
-
-    def get_historical_inverter(self, start, end):
+    def get_battery_data(self, start, end):
         """
         Given a start and end timestamp return the inverter
         data.
@@ -197,7 +164,7 @@ class Controller(object):
         return request.query(start, end)
 
     @property
-    def latest_historical_inverter(self):
+    def latest_battery_data(self):
         """
         Return a list of data points as lists. Times are in GMT
         :return:
@@ -211,7 +178,7 @@ class Controller(object):
         )
         return request.get()
 
-    def get_historical_meter(self, start, end):
+    def get_meter_data(self, start, end):
         """
         Given a start and end timestamp return the meter
         data.
@@ -229,7 +196,7 @@ class Controller(object):
         return request.query(start, end)
 
     @property
-    def latest_historical_meter(self):
+    def latest_meter_data(self):
         """
         Return a list of data points as lists. Times are in GMT
         :return:
@@ -239,36 +206,6 @@ class Controller(object):
             controller=self,
             schema={
                 'meterP': {}
-            }
-        )
-        return request.get()
-
-    @property
-    def weekday_tou_tariff(self):
-        """
-        Returns a list of dicts of weekday time of use tariff information
-        :return:
-        """
-        request = ApiRequest(
-            path='v2/deployments/{}/tariff/tou'.format(self.user_key),
-            controller=self,
-            schema={
-                'weekday': {}
-            }
-        )
-        return request.get()
-
-    @property
-    def weekend_tou_tariff(self):
-        """
-        Returns a list of dicts of weekend time of use tariff information
-        :return:
-        """
-        request = ApiRequest(
-            path='v2/deployments/{}/tariff/tou'.format(self.user_key),
-            controller=self,
-            schema={
-                'weekend': {}
             }
         )
         return request.get()

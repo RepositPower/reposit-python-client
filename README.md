@@ -13,8 +13,7 @@
 ## Compatibility
 
 - Python 2.7
-- Python 3+
-- Python 3.6 *preferred*
+- Python 3+ *preferred*
 
 ## Installation
 ```
@@ -38,25 +37,21 @@ print(controller.battery_capacity)
 ```
 
 ## Data
-| Method        | Params          | Description |
-|:-------------:|:-------------|:-------------|
-| `battery_capacity`      | - | Get the capacity of the battery in kWh                |
-| `battery_min_state_of_charge`      | -      | Get the minimum state of charge of the battery |
-| `has_battery` | -      | Bool of whether the user has a battery or not|
-| `has_inverter` | -      | Bool of whether the user has an inverter or not|
-| `get_historical_generation` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of generation data based on start or end|
-|`latest_historical_generation`|-|Get a list of the latest generation data. Goes back the last 24 hours.|
-| `get_historical_house` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of house data based on start or end|
-|`latest_historical_house`|-|Get a list of the latest house data. Goes back the last 24 hours.|
-| `get_historical_grid_credits` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of grid credits earned based on start or end|
-|`latest_historical_house`|-|Get a list of the latest grid credits earned. Goes back the last 24 hours.|
-| `get_historical_inverter` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of inverter data based on start or end|
-|`latest_historical_inverter`|-|Get a list of the latest inverter data. Goes back the last 24 hours.|
-| `get_historical_meter` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of meter data based on start or end|
-|`latest_historical_meter`|-|Get a list of the latest meter data. Goes back the last 24 hours.|
-|`weekday_tou_tariff`|-|Get weekday tou tariff information such as peak/off peak times and rates.|
-|`weekend_tou_tariff`|-|Get weekend tou tariff information such as peak/off peak times and rates.|
-|`feed_in_tariff`|-|Get the feed-in-tariff|
+| Method        | Params          | Description | Unit |
+|:-------------:|:-------------|:-------------|---------|
+| `battery_capacity`      | - | Get the capacity of the battery                | kWh |
+| `battery_min_state_of_charge`      | -      | Get the minimum state of charge of the battery | Percentage (%)
+| `has_battery` | -      | Bool of whether the user has a battery or not| True/False |
+| `has_inverter` | -      | Bool of whether the user has an inverter or not| True/False |
+| `get_solar_generation_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of solar generation data based on start or end| kW |
+|`latest_solar_generation_data`|-|Get a list of the latest generation data. Goes back the last 24 hours.| kW |
+| `get_house_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of house data based on start or end| kW|
+|`latest_house_data`|-|Get a list of the latest house data. Goes back the last 24 hours.| kW|
+| `get_battery_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of battery data based on start or end| kWh |
+|`latest_battery_data`|-|Get a list of the latest battery data. Goes back the last 24 hours.| kWh |pip 
+| `get_meter_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of meter data based on start or end| kWh
+|`latest_meter_data`|-|Get a list of the latest meter data. Goes back the last 24 hours.| kWh |
+|`feed_in_tariff`|-|Get the feed-in-tariff| Dollars ($) |
 
 ## Links
 
