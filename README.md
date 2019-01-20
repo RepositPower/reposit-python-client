@@ -7,7 +7,7 @@
     <span>Python client library to communicate with a Reposit Controller.</span>
 </p>
 <p align="center">
-    <img src="http://www.tech23.com.au/2016/wp-content/uploads/2016/09/tech23-2016-Reposit-Power-logo.png">
+    <img src="https://repositpower.com/wp-content/uploads/2017/05/Reposit_13.jpg">
 </p>
 
 ## Compatibility
@@ -49,7 +49,7 @@ print(controller.battery_capacity)
 |`latest_house_data`|-|Get a list of the latest house data. Goes back the last 24 hours.| kW|
 | `get_battery_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of battery data based on start or end| kWh |
 |`latest_battery_data`|-|Get a list of the latest battery data. Goes back the last 24 hours.| kWh |pip 
-| `get_meter_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of meter data based on start or end| kWh
+| `get_meter_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of meter data based on start or end. There should be at least a 5 minute gap between start and end timestamps (i.e. 300 seconds) | kWh
 |`latest_meter_data`|-|Get a list of the latest meter data. Goes back the last 24 hours.| kWh |
 |`feed_in_tariff`|-|Get the feed-in-tariff| Dollars ($) |
 
