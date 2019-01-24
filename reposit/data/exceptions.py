@@ -7,4 +7,5 @@ class InvalidControllerException(Exception):
     """
     A connection is attempted without auth headers
     """
+    # pylint: disable=unnecessary-pass
     pass
