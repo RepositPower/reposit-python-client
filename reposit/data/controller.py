@@ -80,7 +80,7 @@ class Controller(object):
         )
         return request.get()
 
-    def get_solar_generation_data(self, start, end):
+    def get_solar_generation(self, start, end=None):
         """
         Given a start and end timestamp return the generation
         data.
@@ -98,7 +98,7 @@ class Controller(object):
         return request.query(start, end)
 
     @property
-    def latest_solar_generation_data(self):
+    def latest_solar_generation(self):
         """
         Return a list of data points as lists. Time are in GMT
         :return:
@@ -112,7 +112,7 @@ class Controller(object):
         )
         return request.get()
 
-    def get_house_data(self, start, end):
+    def get_house_consumption(self, start, end=None):
         """
         Given a start and end timestamp return the house
         data.
@@ -130,7 +130,7 @@ class Controller(object):
         return request.query(start, end)
 
     @property
-    def latest_house_data(self):
+    def latest_house_consumption(self):
         """
         Return a list of data points as lists. Time are in GMT
         :return:
@@ -146,7 +146,7 @@ class Controller(object):
         )
         return request.get()
 
-    def get_battery_data(self, start, end):
+    def get_battery_data(self, start, end=None):
         """
         Given a start and end timestamp return the inverter
         data.
@@ -178,7 +178,24 @@ class Controller(object):
         )
         return request.get()
 
-    def get_meter_data(self, start, end):
+    def get_remaining_charge(self, start, end=None):
+        """
+        Given a start and end timestamp return the remaining battery charge
+        data.
+        :param start: unix timestamp
+        :param end: unix timestamp
+        :return: list of lists of data
+        """
+        request = ApiRequest(
+            path='v2/deployments/{}/battery/historical/soc'.format(self.user_key),
+            controller=self,
+            schema={
+                'batterySOC': {}
+            }
+        )
+        return request.query(start, end)
+
+    def get_meter_data(self, start, end=None):
         """
         Given a start and end timestamp return the meter
         data.

@@ -108,7 +108,7 @@ class ApiRequest(object):
             raise ex
 
         data = self._simple_format_for_fields(resp)
-        return {'data': data[0]}  # because this is a list of lists
+        return {'data': data}
 
     def _simple_format_for_fields(self, api_response):
         """
