@@ -43,14 +43,15 @@ print(controller.battery_capacity)
 | `battery_min_state_of_charge`      | -      | Get the minimum state of charge of the battery | Percentage (%)
 | `has_battery` | -      | Bool of whether the user has a battery or not| True/False |
 | `has_inverter` | -      | Bool of whether the user has an inverter or not| True/False |
-| `get_solar_generation_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of solar generation data based on start or end| kW |
-|`latest_solar_generation_data`|-|Get a list of the latest generation data. Goes back the last 24 hours.| kW |
-| `get_house_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of house data based on start or end| kW|
-|`latest_house_data`|-|Get a list of the latest house data. Goes back the last 24 hours.| kW|
+| `get_solar_generation` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of solar generation data based on start or end| kW |
+|`latest_solar_generation`|-|Get a list of the latest generation data. Goes back the last 24 hours.| kW |
+| `get_house_consumption` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of house consumption values based on start or end| kW|
+|`latest_house_consumption`|-|Get a list of the latest house consumption. Goes back the last 24 hours.| kW|
 | `get_battery_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of battery data based on start or end| kWh |
-|`latest_battery_data`|-|Get a list of the latest battery data. Goes back the last 24 hours.| kWh |pip 
-| `get_meter_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of meter data based on start or end. There should be at least a 5 minute gap between start and end timestamps (i.e. 300 seconds) | kWh
-|`latest_meter_data`|-|Get a list of the latest meter data. Goes back the last 24 hours.| kWh |
+|`latest_battery_data`|-|Get a list of the latest battery data. Goes back the last 24 hours.| kWh |
+| `get_remaining_charge` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of the battery's remaining charge values based on start or end. There should be at least a 5 minute gap between start and end timestamps (i.e. 300 seconds)<br/><br/> Note: This can be used to calculate the state of charge with the formula: (remaining_charge / battery_capacity) * 100` | kWh
+| `get_meter_data` | <ul><li>start (timestamp)</li><li>end(timestamp)(optional, default=now)</li></ul>  | Get a list of meter data based on start or end. There should be at least a 5 minute gap between start and end timestamps (i.e. 300 seconds) | kW
+|`latest_meter_data`|-|Get a list of the latest meter data. Goes back the last 24 hours.| kW |
 |`feed_in_tariff`|-|Get the feed-in-tariff| Dollars ($) |
 
 ## Links
