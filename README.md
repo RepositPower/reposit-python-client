@@ -4,7 +4,7 @@
 
 
 <p align="center">
-    <span>Python client library to communicate with a Reposit Controller.</span>
+    <span>Retrieve data collected by your Reposit Power Home Energy Management System</span>
 </p>
 <p align="center">
     <img src="https://repositpower.com/wp-content/uploads/2017/05/Reposit_13.jpg">
