@@ -13,7 +13,7 @@
 ## Compatibility
 
 - Python 2.7
-- Python 3+ *preferred*
+- Python 3.5+ *preferred*
 
 ## Installation
 ```
