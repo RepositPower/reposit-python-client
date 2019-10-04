@@ -4,7 +4,7 @@ Define an API connection object
 import logging
 
 import requests
-import pendulum
+import time
 
 from reposit.data.exceptions import InvalidControllerException
 from reposit.data.utils import is_valid_url, deepest_key, match_to_schema
@@ -94,7 +94,7 @@ class ApiRequest(object):
         :return:
         """
         if not end:
-            end = pendulum.now().int_timestamp
+            end = int(time.time())
 
         resp = requests.get(
             '{}?start={}&end={}'.format(self.url, start, end),
